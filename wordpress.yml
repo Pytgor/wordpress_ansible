@@ -1,0 +1,9 @@
+---
+- hosts: wordpress
+  become: true
+  tasks:
+      - name: Update the system
+        tags: update
+        ansible.builtin.apt:
+          update_cache: yes
+          upgrade: dist
