@@ -79,4 +79,23 @@
     virtualenv: /opt/myenv
     state: present
 
-- name: 
+- name: Set MariaDB root password
+  tags: mariadb
+  community.mysql.mysql_user:
+    name: root
+    host: localhost
+    password: "mypassword"
+    login_user: root
+    login_password: ""
+    priv: "*.*:ALL,GRANT"
+    state: present
+  ignore_errors: true
+
+- name: Remove anonymous MariaDB users
+  tags: mariadb
+  community.mysql.mysql_user:
+    name: ==
+    host_all: yes
+    login_user: root
+    login_password: "mypassword"
+    state: absent
