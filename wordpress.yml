@@ -1,9 +1,14 @@
 ---
 - hosts: wordpress
   become: true
-  tasks:
+  pre_tasks:
       - name: Update the system
         tags: update
         ansible.builtin.apt:
           update_cache: yes
           upgrade: dist
+
+
+  hosts: wordpress
+  roles:
+    - wordpress
