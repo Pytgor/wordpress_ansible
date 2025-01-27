@@ -64,6 +64,9 @@
       - python3-dev
       - python3-venv
       - libmysqlclient-dev
+      - python3-pymysql
+      - python3-mysql.connector
+      - python3-dev
     state: present
 
 - name: Create a virtual environment for Python
@@ -86,7 +89,7 @@
     host: localhost
     password: "mypassword"
     login_user: root
-    login_password: ""
+    login_password: "mypassword"
     priv: "*.*:ALL,GRANT"
     state: present
   ignore_errors: true
@@ -94,8 +97,8 @@
 - name: Remove anonymous MariaDB users
   tags: mariadb
   community.mysql.mysql_user:
-    name: ==
-    host_all: yes
+    name: ''
+    host_all: true
     login_user: root
     login_password: "mypassword"
     state: absent

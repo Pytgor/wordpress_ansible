@@ -1,7 +1,7 @@
 ---
 - hosts: wordpress
   become: true
-  pre_tasks:
+  tasks:
       - name: Update the system
         tags: update
         ansible.builtin.apt:
